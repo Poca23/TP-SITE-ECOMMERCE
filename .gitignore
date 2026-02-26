@@ -1,0 +1,21 @@
+# Dépendances
+/vendor/
+
+# Configuration sensible
+config/database.php
+
+# Logs
+*.log
+/logs/
+
+# Système
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Upload utilisateurs
+/uploads/

@@ -1,0 +1,73 @@
+<?php
+$products = [
+    [
+        'id' => 1,
+        'name' => 'Licorne Arc-en-ciel',
+        'desc' => 'Une licorne aux couleurs chatoyantes qui répand la joie.',
+        'price' => 29.99,
+        'img' => 'https://placehold.co/400x300/ffb3de/fff?text=🦄+Arc-en-ciel',
+    ],
+    [
+        'id' => 2,
+        'name' => 'Licorne Galactique',
+        'desc' => 'Voyagez dans les étoiles avec cette licorne cosmique.',
+        'price' => 34.99,
+        'img' => 'https://placehold.co/400x300/b3d4ff/fff?text=🦄+Galactique',
+    ],
+    [
+        'id' => 3,
+        'name' => 'Licorne des Neiges',
+        'desc' => 'Froide et majestueuse, elle glisse sur les flocons.',
+        'price' => 27.50,
+        'img' => 'https://placehold.co/400x300/d4f0ff/555?text=🦄+Neiges',
+    ],
+    [
+        'id' => 4,
+        'name' => 'Licorne Dorée',
+        'desc' => 'Symbole de richesse et de prestige absolu.',
+        'price' => 49.99,
+        'img' => 'https://placehold.co/400x300/fff0b3/555?text=🦄+Dorée',
+    ],
+    [
+        'id' => 5,
+        'name' => 'Licorne des Forêts',
+        'desc' => 'Gardienne des arbres millénaires et des secrets.',
+        'price' => 24.99,
+        'img' => 'https://placehold.co/400x300/b3ffcc/555?text=🦄+Forêts',
+    ],
+    [
+        'id' => 6,
+        'name' => 'Licorne Magma',
+        'desc' => 'Née du volcan, elle brûle d\'une flamme éternelle.',
+        'price' => 39.90,
+        'img' => 'https://placehold.co/400x300/ffb3b3/fff?text=🦄+Magma',
+    ],
+    [
+        'id' => 7,
+        'name' => 'Licorne Cristal',
+        'desc' => 'Transparente et pure, elle reflète toutes les lumières.',
+        'price' => 44.00,
+        'img' => 'https://placehold.co/400x300/e8d4ff/555?text=🦄+Cristal',
+    ],
+    [
+        'id' => 8,
+        'name' => 'Licorne Aquatique',
+        'desc' => 'Elle nage dans les océans profonds et mystérieux.',
+        'price' => 31.00,
+        'img' => 'https://placehold.co/400x300/b3eeff/555?text=🦄+Aquatique',
+    ],
+    [
+        'id' => 9,
+        'name' => 'Licorne Solaire',
+        'desc' => 'Elle puise son énergie directement du soleil.',
+        'price' => 36.50,
+        'img' => 'https://placehold.co/400x300/ffe4b3/555?text=🦄+Solaire',
+    ],
+    [
+        'id' => 10,
+        'name' => 'Licorne Shadow',
+        'desc' => 'Mystérieuse et rare, elle n\'apparaît qu\'à minuit.',
+        'price' => 55.00,
+        'img' => 'https://placehold.co/400x300/333/fff?text=🦄+Shadow',
+    ],
+];
