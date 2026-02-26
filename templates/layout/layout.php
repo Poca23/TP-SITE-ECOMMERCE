@@ -9,9 +9,11 @@
 <body>
 <?php require __DIR__ . '/navbar.php'; ?>
 <main class="container">
+    <?php require __DIR__ . '/../partials/flash.php'; ?>
     <?= $content ?>
 </main>
 <?php require __DIR__ . '/footer.php'; ?>
 <script src="assets/js/cart.js"></script>
+<script src="assets/js/toast.js"></script>
 </body>
 </html>
