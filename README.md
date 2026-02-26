@@ -67,10 +67,10 @@ php -S localhost:8000
 
 > À changer impérativement en production.
 
-| Champ | Valeur |
-|-------|--------|
-| Email | admin@unicornshop.fr |
-| Mot de passe | Admin1234! |
+| Email                | Mot de passe       |
+| -------------------- | ------------------ |
+| admin@unicornshop.fr | Admin1234! (Admin) |
+| alice@unicornshop.fr | Alice1234! (User)  |
 
 ## Licence
 
