@@ -15,5 +15,7 @@
 <?php require __DIR__ . '/footer.php'; ?>
 <script src="assets/js/cart.js"></script>
 <script src="assets/js/toast.js"></script>
+<script src="assets/js/navbar.js"></script>
+<script src="assets/js/password.js"></script>
 </body>
 </html>
