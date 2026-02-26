@@ -1,105 +1,111 @@
 <?php
+declare(strict_types=1);
 require_once __DIR__ . '/../models/Product.php';
 
-class ProductController {
-
-    private int $perPage = 4;
-
-    public function index(): void {
-        $page = isset($_GET['page']) ? max(1, (int) $_GET['page']) : 1;
-        $data = Product::paginate($page, $this->perPage);
+class ProductController
+{
+    public function index(): void
+    {
+        $page = max(1, (int) ($_GET['page'] ?? 1));
+        $data = Product::paginate($page, 8);
         require __DIR__ . '/../templates/products/list.php';
     }
 
-    public function create(): void {
+    public function createForm(): void
+    {
         $this->requireAdmin();
         $error = '';
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            [$name, $desc, $price, $img] = $this->formFields();
-            if ($name === '') {
-                $error = 'Le nom est requis.';
-            } else {
-                Product::create($name, $desc, (float)$price, $img);
-                header('Location: index.php');
-                exit;
-            }
-        }
-
         $product = null;
-        $formTitle = 'Ajouter un produit';
+        $formTitle = 'Ajouter une licorne';
         require __DIR__ . '/../templates/products/form.php';
     }
 
-    public function edit(): void {
+    public function create(): void
+    {
         $this->requireAdmin();
-        $id      = (int)($_GET['id'] ?? 0);
-        $product = Product::findById($id);
-        $error   = '';
-
-        if (!$product) {
-            header('Location: index.php');
-            exit;
+        [$name, $desc, $price, $img] = $this->fields();
+        $error = '';
+        if ($name === '') {
+            $error = 'Le nom est requis.';
+            $product = null;
+            $formTitle = 'Ajouter une licorne';
+            require __DIR__ . '/../templates/products/form.php';
+            return;
         }
+        Product::create($name, $desc, (float) $price, $img);
+        header('Location: index.php?action=products');
+        exit;
+    }
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            [$name, $desc, $price, $img] = $this->formFields();
-            if ($name === '') {
-                $error = 'Le nom est requis.';
-            } else {
-                Product::update($id, $name, $desc, (float)$price, $img);
-                header('Location: index.php');
-                exit;
-            }
-        }
-
+    public function editForm(): void
+    {
+        $this->requireAdmin();
+        $product = $this->getProduct();
+        $error = '';
         $formTitle = 'Modifier le produit';
         require __DIR__ . '/../templates/products/form.php';
     }
 
-    public function delete(): void {
+    public function edit(): void
+    {
         $this->requireAdmin();
-        $id      = (int)($_GET['id'] ?? 0);
-        $product = Product::findById($id);
-
-        if (!$product) {
-            header('Location: index.php');
-            exit;
+        $product = $this->getProduct();
+        [$name, $desc, $price, $img] = $this->fields();
+        $error = '';
+        if ($name === '') {
+            $error = 'Le nom est requis.';
+            $formTitle = 'Modifier le produit';
+            require __DIR__ . '/../templates/products/form.php';
+            return;
         }
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->verifyCsrf();
-            Product::delete($id);
-            header('Location: index.php');
-            exit;
-        }
-
-        require __DIR__ . '/../templates/products/confirm-delete.php';
+        Product::update((int) $product['id'], $name, $desc, (float) $price, $img);
+        header('Location: index.php?action=products');
+        exit;
     }
 
-    /* ── helpers ── */
+    public function delete(): void
+    {
+        $this->requireAdmin();
+        $this->verifyCsrf();
+        Product::delete((int) ($_POST['id'] ?? 0));
+        header('Location: index.php?action=products');
+        exit;
+    }
 
-    private function requireAdmin(): void {
+    private function getProduct(): array
+    {
+        $p = Product::findById((int) ($_GET['id'] ?? 0));
+        if (!$p) {
+            header('Location: index.php?action=products');
+            exit;
+        }
+        return $p;
+    }
+
+    private function fields(): array
+    {
+        $this->verifyCsrf();
+        return [
+            trim(strip_tags($_POST['name'] ?? '')),
+            trim(strip_tags($_POST['desc'] ?? '')),
+            $_POST['price'] ?? '0',
+            trim(strip_tags($_POST['img'] ?? '')),
+        ];
+    }
+
+    private function requireAdmin(): void
+    {
         if (($_SESSION['role'] ?? '') !== 'admin') {
             header('Location: index.php');
             exit;
         }
     }
 
-    private function formFields(): array {
-        $this->verifyCsrf();
-        return [
-            trim(strip_tags($_POST['name']  ?? '')),
-            trim(strip_tags($_POST['desc']  ?? '')),
-            $_POST['price'] ?? '0',
-            trim(strip_tags($_POST['img']   ?? '')),
-        ];
-    }
-
-    private function verifyCsrf(): void {
+    private function verifyCsrf(): void
+    {
         if (!hash_equals($_SESSION['csrf'] ?? '', $_POST['csrf'] ?? '')) {
             http_response_code(403);
-            exit('Token CSRF invalide.');
+            exit('CSRF invalide.');
         }
     }
 }
