@@ -1,0 +1,57 @@
+/* ── Formulaires ── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+.form-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.form-control {
+  padding: 0.5rem 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* ── Alerts ── */
+.alert {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.alert--error {
+  background: #fff5f5;
+  color: var(--danger);
+  border: 1px solid #ffc5c5;
+}
+.alert--success {
+  background: #f0fff4;
+  color: var(--success);
+  border: 1px solid #9ae6b4;
+}
+
+/* ── Table ── */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+.table th,
+.table td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+.table th {
+  background: #f3e8ff;
+  font-weight: 700;
+}

@@ -1,0 +1,9 @@
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 1.5rem var(--gap);
+  background: var(--primary-d);
+  color: #fff;
+  margin-top: 3rem;
+  font-size: 0.875rem;
+}
