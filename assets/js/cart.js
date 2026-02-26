@@ -1,30 +1,21 @@
-'use strict';
+"use strict";
 
-const STORAGE_KEY = 'unicorn_cart';
-const cart = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+const CART_KEY = "unicorn_cart";
 
-const save = () => localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+function getCart() {
+  return JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+}
 
-const updateCount = () => {
-  const total = cart.reduce((sum, i) => sum + i.qty, 0);
-  document.querySelectorAll('.cart-count').forEach(el => el.textContent = total);
-};
+function saveCart(cart) {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
 
-const addToCart = ({ id, name, price }) => {
-  const existing = cart.find(i => i.id === id);
-  existing
-    ? existing.qty++
-    : cart.push({ id, name, price: parseFloat(price), qty: 1 });
-  save();
-  updateCount();
-};
+function updateBadge() {
+  const total = getCart().reduce((s, i) => s + i.qty, 0);
+  document
+    .querySelectorAll(".cart-count")
+    .forEach((el) => (el.textContent = total));
+}
 
-document.querySelectorAll('.btn-cart').forEach(btn => {
-  btn.addEventListener('click', () => {
-    addToCart(btn.dataset);
-    btn.textContent = '✅ Ajouté !';
-    setTimeout(() => (btn.textContent = '🛒 Ajouter'), 1200);
-  });
-});
-
-updateCount();
+// Sync badge au chargement
+updateBadge();
