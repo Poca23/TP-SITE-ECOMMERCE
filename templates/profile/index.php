@@ -29,9 +29,9 @@
             </div>
         </div>
         <div class="form__group">
-            <label>Nouveau mot de passe <small>(min. 8 car.)</small></label>
+            <label>Nouveau mot de passe <small>(min. 12 car.)</small></label>
             <div class="input-eye">
-                <input type="password" name="new_password" id="new_password" placeholder="Minimum 8 caractères">
+                <input type="password" name="new_password" id="new_password" placeholder="Minimum 12 caractères">
                 <button type="button" class="eye-btn" data-toggle-password="#new_password">👁️</button>
             </div>
         </div>
