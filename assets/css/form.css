@@ -9,6 +9,11 @@
   font-weight: 600;
   font-size: 0.9rem;
 }
+.form__hint {
+  font-weight: 400;
+  color: #999;
+  font-size: 0.8rem;
+}
 .form__group input,
 .form__group textarea,
 .form__group select {
@@ -26,6 +31,8 @@
 }
 .form__actions {
   margin-top: 0.5rem;
+  display: flex;
+  gap: 0.8rem;
 }
 .form__link {
   text-align: center;
@@ -49,7 +56,6 @@
   padding: 0.4rem 0.6rem;
   cursor: pointer;
   font-size: 1rem;
-  line-height: 1;
 }
 .eye-btn:hover {
   border-color: var(--primary);
@@ -88,4 +94,56 @@
 .table th {
   background: #f3e8ff;
   font-weight: 700;
+}
+
+/* ── Upload zone ── */
+.upload-zone {
+  position: relative;
+  border: 2px dashed #c084fc;
+  border-radius: var(--radius);
+  background: #fdf4ff;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+  overflow: hidden;
+}
+.upload-zone:hover,
+.upload-zone--drag {
+  background: #f3e8ff;
+  border-color: var(--primary-d);
+}
+.upload-zone__input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0;
+}
+.upload-zone__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+.upload-zone__icon {
+  font-size: 2.5rem;
+}
+.upload-zone__text {
+  font-size: 0.9rem;
+  color: #888;
+}
+.upload-zone__preview {
+  max-height: 130px;
+  max-width: 100%;
+  border-radius: 0.5rem;
+  object-fit: contain;
 }
