@@ -22,14 +22,36 @@ class ProfileController
             http_response_code(403);
             exit('CSRF invalide.');
         }
+
         $username = trim(strip_tags($_POST['username'] ?? ''));
         $email = trim($_POST['email'] ?? '');
+        $currentPassword = $_POST['current_password'] ?? '';
+        $newPassword = $_POST['new_password'] ?? '';
+        $confirmPassword = $_POST['confirm_password'] ?? '';
+
         $user = User::findById((int) $_SESSION['user_id']);
         $orders = Order::findByUser((int) $_SESSION['user_id']);
         $error = '';
         $success = '';
+
         if ($username === '' || $email === '') {
-            $error = 'Champs requis.';
+            $error = 'Nom d\'utilisateur et email requis.';
+        } elseif ($newPassword !== '' || $currentPassword !== '') {
+            // Changement de mot de passe demandé
+            if (!password_verify($currentPassword, $user['password'])) {
+                $error = 'Mot de passe actuel incorrect.';
+            } elseif (strlen($newPassword) < 8) {
+                $error = 'Nouveau mot de passe trop court (min. 8 caractères).';
+            } elseif ($newPassword !== $confirmPassword) {
+                $error = 'Les nouveaux mots de passe ne correspondent pas.';
+            } else {
+                User::update((int) $_SESSION['user_id'], $username, $email);
+                User::updatePassword((int) $_SESSION['user_id'], $newPassword);
+                $_SESSION['username'] = $username;
+                $success = 'Profil et mot de passe mis à jour.';
+                $user['username'] = $username;
+                $user['email'] = $email;
+            }
         } else {
             User::update((int) $_SESSION['user_id'], $username, $email);
             $_SESSION['username'] = $username;
@@ -37,6 +59,7 @@ class ProfileController
             $user['username'] = $username;
             $user['email'] = $email;
         }
+
         require __DIR__ . '/../templates/profile/index.php';
     }
 

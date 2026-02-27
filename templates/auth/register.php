@@ -11,22 +11,30 @@
         <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
         <div class="form__group">
             <label>Nom d'utilisateur</label>
-            <input type="text" name="username" required maxlength="50"
-                   value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
+            <input type="text" name="username" required maxlength="50" placeholder="Votre nom"
+            value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
         </div>
+        
         <div class="form__group">
             <label>Email</label>
-            <input type="email" name="email" required
-                   value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
+            <input type="email" name="email" required placeholder="votre@email.fr"
+            value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
         </div>
+
         <div class="form__group">
             <label>Mot de passe <small>(min. 8 car.)</small></label>
-            <input type="password" name="password" required minlength="8">
+                <div class="input-eye">
+                <input type="password" name="password" id="reg_password" required minlength="8" placeholder="Minimum 8 caractères">
+                <button type="button" class="eye-btn" data-toggle-password="#reg_password">👁️</button>
         </div>
+
         <div class="form__group">
             <label>Confirmer</label>
-            <input type="password" name="confirm" required minlength="8">
+            <div class="input-eye">
+            <input type="password" name="confirm" id="reg_confirm" required minlength="8" placeholder="Répétez le mot de passe">
+            <button type="button" class="eye-btn" data-toggle-password="#reg_confirm">👁️</button>
         </div>
+
         <div class="form__actions">
             <button type="submit" class="btn btn--primary">Créer mon compte</button>
         </div>

@@ -13,9 +13,7 @@ class User
 
     public static function create(string $username, string $email, string $password): bool
     {
-        $st = getPDO()->prepare(
-            'INSERT INTO users (username, email, password) VALUES (?, ?, ?)'
-        );
+        $st = getPDO()->prepare('INSERT INTO users (username, email, password) VALUES (?, ?, ?)');
         return $st->execute([$username, $email, password_hash($password, PASSWORD_BCRYPT, ['cost' => 12])]);
     }
 
@@ -44,5 +42,11 @@ class User
     {
         $st = getPDO()->prepare('UPDATE users SET username=?, email=? WHERE id=?');
         return $st->execute([$username, $email, $id]);
+    }
+
+    public static function updatePassword(int $id, string $password): bool
+    {
+        $st = getPDO()->prepare('UPDATE users SET password=? WHERE id=?');
+        return $st->execute([password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]), $id]);
     }
 }

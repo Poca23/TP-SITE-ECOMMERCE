@@ -11,13 +11,17 @@
         <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
         <div class="form__group">
             <label>Email</label>
-            <input type="email" name="email" required autocomplete="email"
-                   value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
+            <input type="email" name="email" required autocomplete="email" placeholder="votre@email.fr"
+            value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
         </div>
         <div class="form__group">
             <label>Mot de passe</label>
-            <input type="password" name="password" required>
-        </div>
+        <div class="input-eye">
+        <input type="password" name="password" id="login_password" required placeholder="Votre mot de passe">
+        <button type="button" class="eye-btn" data-toggle-password="#login_password" id="login_password_btn">👁️</button>
+    </div>
+</div>
+
         <div class="form__actions">
             <button type="submit" class="btn btn--primary">Se connecter</button>
         </div>
