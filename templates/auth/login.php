@@ -16,9 +16,12 @@
         </div>
         <div class="form__group">
             <label>Mot de passe</label>
-            <input type="password" name="password" required placeholder="Votre mot de passe">
+        <div class="input-eye">
+        <input type="password" name="password" id="login_password" required placeholder="Votre mot de passe">
+        <button type="button" class="eye-btn" data-toggle-password="#login_password" id="login_password_btn">👁️</button>
+    </div>
+</div>
 
-        </div>
         <div class="form__actions">
             <button type="submit" class="btn btn--primary">Se connecter</button>
         </div>
