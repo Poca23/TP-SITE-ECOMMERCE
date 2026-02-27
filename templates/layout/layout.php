@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UnicornShop 🦄</title>
+    <title>UnicornShop</title>
     <link rel="icon" href="https://fav.farm/🦄" type="image/png">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
