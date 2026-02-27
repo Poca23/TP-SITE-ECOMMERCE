@@ -1,0 +1,149 @@
+/* ── Formulaires ── */
+.form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+.form__group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.form__hint {
+  font-weight: 400;
+  color: #999;
+  font-size: 0.8rem;
+}
+.form__group input,
+.form__group textarea,
+.form__group select {
+  padding: 0.5rem 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+  background: #fff;
+}
+.form__group input:focus,
+.form__group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+.form__actions {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.8rem;
+}
+.form__link {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+/* ── Input + bouton œil ── */
+.input-eye {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+.input-eye input {
+  flex: 1;
+}
+.eye-btn {
+  background: none;
+  border: 2px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.eye-btn:hover {
+  border-color: var(--primary);
+}
+
+/* ── Alerts ── */
+.alert {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.alert--error {
+  background: #fff5f5;
+  color: var(--danger);
+  border: 1px solid #ffc5c5;
+}
+.alert--success {
+  background: #f0fff4;
+  color: var(--success);
+  border: 1px solid #9ae6b4;
+}
+
+/* ── Table ── */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+.table th,
+.table td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+.table th {
+  background: #f3e8ff;
+  font-weight: 700;
+}
+
+/* ── Upload zone ── */
+.upload-zone {
+  position: relative;
+  border: 2px dashed #c084fc;
+  border-radius: var(--radius);
+  background: #fdf4ff;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+  overflow: hidden;
+}
+.upload-zone:hover,
+.upload-zone--drag {
+  background: #f3e8ff;
+  border-color: var(--primary-d);
+}
+.upload-zone__input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0;
+}
+.upload-zone__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+.upload-zone__icon {
+  font-size: 2.5rem;
+}
+.upload-zone__text {
+  font-size: 0.9rem;
+  color: #888;
+}
+.upload-zone__preview {
+  max-height: 130px;
+  max-width: 100%;
+  border-radius: 0.5rem;
+  object-fit: contain;
+}

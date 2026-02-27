@@ -3,6 +3,7 @@
 
 # Configuration sensible
 config/database.php
+.env
 
 # Logs
 *.log
@@ -17,5 +18,5 @@ Thumbs.db
 .vscode/
 *.swp
 
-# Upload utilisateurs
-/uploads/
+# Upload
+/assets/uploads/

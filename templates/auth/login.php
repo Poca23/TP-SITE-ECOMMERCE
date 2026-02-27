@@ -3,31 +3,36 @@
 <div class="form-wrapper">
     <h1 class="page-title">Connexion 🔐</h1>
 
+    <?php if (($_GET['reason'] ?? '') === 'expired'): ?>
+        <p class="alert alert--error">
+            ⏱️ Votre session a expiré après inactivité. Veuillez vous reconnecter.
+        </p>
+    <?php endif; ?>
+
     <?php if (!empty($error)): ?>
         <p class="alert alert--error"><?= htmlspecialchars($error) ?></p>
     <?php endif; ?>
 
-    <form method="POST" class="form" novalidate>
-        <input type="hidden" name="csrf" value="<?= htmlspecialchars($_SESSION['csrf']) ?>">
-
+    <form method="POST" class="form">
+        <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
         <div class="form__group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required autocomplete="email"
-                   value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
+            <label>Email</label>
+            <input type="email" name="email" required autocomplete="email" placeholder="votre@email.fr"
+                value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
         </div>
-
         <div class="form__group">
-            <label for="password">Mot de passe</label>
-            <input type="password" id="password" name="password" required autocomplete="current-password">
+            <label>Mot de passe</label>
+            <div class="input-eye">
+                <input type="password" name="password" id="login_password" required placeholder="Votre mot de passe">
+                <button type="button" class="eye-btn" data-toggle-password="#login_password">👁️</button>
+            </div>
         </div>
-
         <div class="form__actions">
-            <button type="submit" class="btn-primary">Se connecter</button>
+            <button type="submit" class="btn btn--primary">Se connecter</button>
         </div>
-        <p class="form__link">Pas de compte ? <a href="index.php?action=register">S'inscrire</a></p>
     </form>
+    <p class="form__link">Pas de compte ? <a href="index.php?action=register">S'inscrire</a></p>
 </div>
 
-<?php
-$content = ob_get_clean();
-require __DIR__ . '/../layout.php';
+<?php $content = ob_get_clean();
+require __DIR__ . '/../layout/layout.php'; ?>

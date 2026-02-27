@@ -6,42 +6,41 @@
     <?php if (!empty($error)): ?>
         <p class="alert alert--error"><?= htmlspecialchars($error) ?></p>
     <?php endif; ?>
-    <?php if (!empty($success)): ?>
-        <p class="alert alert--success"><?= $success ?></p>
-    <?php endif; ?>
 
-    <form method="POST" class="form" novalidate>
-        <input type="hidden" name="csrf" value="<?= htmlspecialchars($_SESSION['csrf']) ?>">
-
+    <form method="POST" class="form">
+        <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
         <div class="form__group">
-            <label for="username">Nom d'utilisateur</label>
-            <input type="text" id="username" name="username" required maxlength="50"
-                   value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
+            <label>Nom d'utilisateur</label>
+            <input type="text" name="username" required maxlength="50" placeholder="Votre nom"
+            value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
+        </div>
+        
+        <div class="form__group">
+            <label>Email</label>
+            <input type="email" name="email" required placeholder="votre@email.fr"
+            value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
         </div>
 
         <div class="form__group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required autocomplete="email"
-                   value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
+            <label>Mot de passe <small>(min. 12 car.)</small></label>
+                <div class="input-eye">
+                <input type="password" name="password" id="reg_password" required minlength="12" placeholder="Minimum 12 caractères">
+                <button type="button" class="eye-btn" data-toggle-password="#reg_password">👁️</button>
         </div>
 
         <div class="form__group">
-            <label for="password">Mot de passe <small>(min. 8 caractères)</small></label>
-            <input type="password" id="password" name="password" required minlength="8">
-        </div>
-
-        <div class="form__group">
-            <label for="confirm">Confirmer le mot de passe</label>
-            <input type="password" id="confirm" name="confirm" required minlength="8">
+            <label>Confirmer</label>
+            <div class="input-eye">
+            <input type="password" name="confirm" id="reg_confirm" required minlength="12" placeholder="Répétez le mot de passe">
+            <button type="button" class="eye-btn" data-toggle-password="#reg_confirm">👁️</button>
         </div>
 
         <div class="form__actions">
-            <button type="submit" class="btn-primary">Créer mon compte</button>
+            <button type="submit" class="btn btn--primary">Créer mon compte</button>
         </div>
-        <p class="form__link">Déjà un compte ? <a href="index.php?action=login">Se connecter</a></p>
     </form>
+    <p class="form__link">Déjà un compte ? <a href="index.php?action=login">Se connecter</a></p>
 </div>
 
-<?php
-$content = ob_get_clean();
-require __DIR__ . '/../layout.php';
+<?php $content = ob_get_clean();
+require __DIR__ . '/../layout/layout.php'; ?>
