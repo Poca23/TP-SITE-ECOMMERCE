@@ -17,5 +17,14 @@
 <script src="assets/js/toast.js"></script>
 <script src="assets/js/navbar.js"></script>
 <script src="assets/js/password.js"></script>
+
+<?php if (!empty($_SESSION['user_id'])): ?>
+<script>
+  setTimeout(() => {
+    window.location.href = "index.php?action=login&reason=expired";
+  }, <?= (int)(getenv('SESSION_LIFETIME') ?: 1800) * 1000 ?>);
+</script>
+<?php endif; ?>
+
 </body>
 </html>
