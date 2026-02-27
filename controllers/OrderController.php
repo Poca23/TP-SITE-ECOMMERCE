@@ -28,8 +28,6 @@ class OrderController
             header('Location: index.php?action=cart');
             exit;
         }
-
-        // Validation paiement fictif
         $card = trim($_POST['card'] ?? '');
         $exp = trim($_POST['exp'] ?? '');
         $cvv = trim($_POST['cvv'] ?? '');
@@ -39,7 +37,6 @@ class OrderController
             require __DIR__ . '/../templates/order/checkout.php';
             return;
         }
-
         $orderId = Order::create((int) $_SESSION['user_id'], $total, array_values($items));
         Cart::clear();
         $_SESSION['last_order_id'] = $orderId;
@@ -58,7 +55,7 @@ class OrderController
     private function requireAuth(): void
     {
         if (empty($_SESSION['user_id'])) {
-            header('Location: index.php?action=login');
+            header('Location: index.php?action=login&reason=expired');
             exit;
         }
     }
