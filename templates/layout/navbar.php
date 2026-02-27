@@ -1,3 +1,5 @@
+<?php require_once __DIR__ . '/../../models/Cart.php'; ?>
+
 <header class="navbar">
     <a href="index.php" class="navbar__brand">🦄 UnicornShop</a>
 
@@ -18,7 +20,7 @@
             <a href="index.php?action=register">Inscription</a>
         <?php endif; ?>
         <a href="index.php?action=cart" class="navbar__cart">
-            🛒 <span class="cart-count">0</span>
+            🛒 <span class="cart-count"><?= Cart::count() ?></span>
         </a>
     </nav>
 </header>
