@@ -3,6 +3,12 @@
 <div class="form-wrapper">
     <h1 class="page-title">Connexion 🔐</h1>
 
+    <?php if (($_GET['reason'] ?? '') === 'expired'): ?>
+        <p class="alert alert--error">
+            ⏱️ Votre session a expiré après inactivité. Veuillez vous reconnecter.
+        </p>
+    <?php endif; ?>
+
     <?php if (!empty($error)): ?>
         <p class="alert alert--error"><?= htmlspecialchars($error) ?></p>
     <?php endif; ?>
@@ -12,16 +18,15 @@
         <div class="form__group">
             <label>Email</label>
             <input type="email" name="email" required autocomplete="email" placeholder="votre@email.fr"
-            value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
+                value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
         </div>
         <div class="form__group">
             <label>Mot de passe</label>
-        <div class="input-eye">
-        <input type="password" name="password" id="login_password" required placeholder="Votre mot de passe">
-        <button type="button" class="eye-btn" data-toggle-password="#login_password" id="login_password_btn">👁️</button>
-    </div>
-</div>
-
+            <div class="input-eye">
+                <input type="password" name="password" id="login_password" required placeholder="Votre mot de passe">
+                <button type="button" class="eye-btn" data-toggle-password="#login_password">👁️</button>
+            </div>
+        </div>
         <div class="form__actions">
             <button type="submit" class="btn btn--primary">Se connecter</button>
         </div>

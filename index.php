@@ -1,9 +1,31 @@
 <?php
 declare(strict_types=1);
+
+// .ENV
+if (file_exists(__DIR__ . '/.env')) {
+    foreach (file(__DIR__ . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+        if (str_starts_with(trim($line), '#'))
+            continue;
+        [$key, $value] = explode('=', $line, 2);
+        putenv(trim($key) . '=' . trim($value));
+    }
+}
+
 session_start();
 
 if (empty($_SESSION['csrf'])) {
     $_SESSION['csrf'] = bin2hex(random_bytes(32));
+}
+
+// Expiration de session
+$lifetime = (int) (getenv('SESSION_LIFETIME') ?: 1800);
+if (!empty($_SESSION['user_id'])) {
+    if (isset($_SESSION['last_activity']) && time() - $_SESSION['last_activity'] > $lifetime) {
+        session_destroy();
+        header('Location: index.php?action=login&reason=expired');
+        exit;
+    }
+    $_SESSION['last_activity'] = time();
 }
 
 require_once __DIR__ . '/controllers/HomeController.php';

@@ -3,6 +3,7 @@
 
 # Configuration sensible
 config/database.php
+.env
 
 # Logs
 *.log
