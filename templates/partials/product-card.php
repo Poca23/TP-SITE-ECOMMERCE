@@ -15,6 +15,7 @@
             <form method="POST" action="index.php?action=cart.add">
                 <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
                 <input type="hidden" name="id"   value="<?= (int)$product['id'] ?>">
+                <input type="hidden" name="redirect" value="products">
                 <button type="submit" class="btn--add">
                     <span>🛒</span>
                     <span class="btn--add__label">Ajouter</span>

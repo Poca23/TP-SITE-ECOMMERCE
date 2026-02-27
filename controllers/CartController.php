@@ -19,7 +19,8 @@ class CartController
         $product = Product::findById($id);
         if ($product)
             Cart::add($id, $product['name'], (float) $product['price']);
-        header('Location: index.php?action=cart');
+        $redirect = $_POST['redirect'] ?? 'products';
+        header('Location: index.php?action=' . $redirect);
         exit;
     }
 
