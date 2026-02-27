@@ -1,8 +1,10 @@
 <article class="card">
-    <img class="card__img"
-         src="<?= htmlspecialchars($product['img']) ?>"
-         alt="<?= htmlspecialchars($product['name']) ?>"
-         loading="lazy">
+    <div class="card__img-wrap">
+        <img class="card__img"
+             src="<?= htmlspecialchars($product['img']) ?>"
+             alt="<?= htmlspecialchars($product['name']) ?>"
+             loading="lazy">
+    </div>
 
     <div class="card__body">
         <h2 class="card__title"><?= htmlspecialchars($product['name']) ?></h2>
