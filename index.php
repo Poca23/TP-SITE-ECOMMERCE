@@ -1,5 +1,16 @@
 <?php
 declare(strict_types=1);
+
+// Chargement des variables d'environnement
+if (file_exists(__DIR__ . '/.env')) {
+    foreach (file(__DIR__ . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+        if (str_starts_with(trim($line), '#'))
+            continue;
+        [$key, $value] = explode('=', $line, 2);
+        putenv(trim($key) . '=' . trim($value));
+    }
+}
+
 session_start();
 
 if (empty($_SESSION['csrf'])) {
