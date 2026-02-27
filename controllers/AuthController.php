@@ -4,6 +4,19 @@ require_once __DIR__ . '/../models/User.php';
 
 class AuthController
 {
+    public static function validatePassword(string $password): string
+    {
+        if (strlen($password) < 12)
+            return 'Mot de passe trop court (min. 12 caractères).';
+        if (!preg_match('/[A-Z]/', $password))
+            return 'Le mot de passe doit contenir au moins une majuscule.';
+        if (!preg_match('/[0-9]/', $password))
+            return 'Le mot de passe doit contenir au moins un chiffre.';
+        if (!preg_match('/[\W_]/', $password))
+            return 'Le mot de passe doit contenir au moins un caractère spécial.';
+        return '';
+    }
+
     public function loginForm(): void
     {
         $error = '';
@@ -53,8 +66,7 @@ class AuthController
             $error = 'Token invalide.';
         } elseif ($username === '' || $email === '' || $password === '') {
             $error = 'Tous les champs sont requis.';
-        } elseif (strlen($password) < 8) {
-            $error = 'Mot de passe trop court (min. 8 caractères).';
+        } elseif (($error = self::validatePassword($password)) !== '') {
         } elseif ($password !== $confirm) {
             $error = 'Les mots de passe ne correspondent pas.';
         } elseif (User::emailExists($email)) {

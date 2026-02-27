@@ -22,16 +22,16 @@
         </div>
 
         <div class="form__group">
-            <label>Mot de passe <small>(min. 8 car.)</small></label>
+            <label>Mot de passe <small>(min. 12 car.)</small></label>
                 <div class="input-eye">
-                <input type="password" name="password" id="reg_password" required minlength="8" placeholder="Minimum 8 caractères">
+                <input type="password" name="password" id="reg_password" required minlength="12" placeholder="Minimum 12 caractères">
                 <button type="button" class="eye-btn" data-toggle-password="#reg_password">👁️</button>
         </div>
 
         <div class="form__group">
             <label>Confirmer</label>
             <div class="input-eye">
-            <input type="password" name="confirm" id="reg_confirm" required minlength="8" placeholder="Répétez le mot de passe">
+            <input type="password" name="confirm" id="reg_confirm" required minlength="12" placeholder="Répétez le mot de passe">
             <button type="button" class="eye-btn" data-toggle-password="#reg_confirm">👁️</button>
         </div>
 

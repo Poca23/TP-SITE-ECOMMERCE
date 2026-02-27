@@ -2,6 +2,7 @@
 declare(strict_types=1);
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/Order.php';
+require_once __DIR__ . '/../controllers/AuthController.php';
 
 class ProfileController
 {
@@ -37,11 +38,9 @@ class ProfileController
         if ($username === '' || $email === '') {
             $error = 'Nom d\'utilisateur et email requis.';
         } elseif ($newPassword !== '' || $currentPassword !== '') {
-            // Changement de mot de passe demandé
             if (!password_verify($currentPassword, $user['password'])) {
                 $error = 'Mot de passe actuel incorrect.';
-            } elseif (strlen($newPassword) < 8) {
-                $error = 'Nouveau mot de passe trop court (min. 8 caractères).';
+            } elseif (($error = AuthController::validatePassword($newPassword)) !== '') {
             } elseif ($newPassword !== $confirmPassword) {
                 $error = 'Les nouveaux mots de passe ne correspondent pas.';
             } else {
